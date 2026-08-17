@@ -1,0 +1,10 @@
+node_modules/
+.next/
+*.db
+*.db-shm
+*.db-wal
+.env.local
+playwright-report/
+test-results/
+grading/.report/
+*.tsbuildinfo

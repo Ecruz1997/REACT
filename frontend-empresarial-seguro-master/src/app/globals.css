@@ -1,0 +1,81 @@
+/* Bóveda — estilos base. Mobile-first (Tema 11). Sin dependencias externas de fuentes. */
+:root {
+  --fondo: #0f1720;
+  --panel: #17212e;
+  --panel-borde: #24303f;
+  --texto: #e7edf3;
+  --texto-tenue: #9fb0c0;
+  --acento: #3d8bff;
+  --ok: #2fbf71;
+  --alerta: #e0b341;
+  --peligro: #e5484d;
+  --radio: 10px;
+  --esp: 1rem;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { color-scheme: dark; }
+body { margin: 0; background: var(--fondo); color: var(--texto); line-height: 1.5; }
+
+a { color: var(--acento); }
+
+/* Foco visible siempre (accesibilidad, quality floor) */
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; border-radius: 4px; }
+
+.contenedor { width: 100%; max-width: 960px; margin: 0 auto; padding: var(--esp); }
+
+.barra {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--esp);
+  padding: var(--esp); border-bottom: 1px solid var(--panel-borde); flex-wrap: wrap;
+}
+.barra .marca { font-weight: 700; letter-spacing: 0.02em; }
+.barra .rol { color: var(--texto-tenue); font-size: 0.85rem; }
+
+.panel {
+  background: var(--panel); border: 1px solid var(--panel-borde);
+  border-radius: var(--radio); padding: var(--esp); margin-bottom: var(--esp);
+}
+
+/* Tarjetas de solicitud: una columna en móvil, grilla en pantallas grandes */
+.grilla { display: grid; grid-template-columns: 1fr; gap: var(--esp); }
+@media (min-width: 640px) { .grilla { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .grilla { grid-template-columns: repeat(3, 1fr); } }
+
+.etiqueta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--texto-tenue); }
+.monto { font-size: 1.4rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cuenta { font-family: ui-monospace, Menlo, Consolas, monospace; color: var(--texto-tenue); }
+
+.chip { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+.chip.PENDIENTE { background: rgba(224,179,65,0.15); color: var(--alerta); }
+.chip.APROBADA { background: rgba(47,191,113,0.15); color: var(--ok); }
+.chip.RECHAZADA { background: rgba(229,72,77,0.15); color: var(--peligro); }
+
+.campo { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: var(--esp); }
+.campo label { font-weight: 600; }
+.campo input, .campo select, .campo textarea {
+  background: var(--fondo); color: var(--texto); border: 1px solid var(--panel-borde);
+  border-radius: 8px; padding: 0.6rem 0.7rem; font: inherit; width: 100%;
+}
+.campo input[aria-invalid="true"], .campo textarea[aria-invalid="true"] { border-color: var(--peligro); }
+.error { color: var(--peligro); font-size: 0.85rem; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  background: var(--acento); color: #fff; border: none; border-radius: 8px;
+  padding: 0.6rem 1rem; font: inherit; font-weight: 600; cursor: pointer; min-height: 44px;
+}
+.btn.secundario { background: transparent; border: 1px solid var(--panel-borde); color: var(--texto); }
+.btn.peligro { background: var(--peligro); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.fila-acciones { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+/* Pantalla de estado (401/403/vacío) — Tema 12 */
+.estado { text-align: center; padding: 3rem 1rem; }
+.estado h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.estado p { color: var(--texto-tenue); max-width: 42ch; margin: 0 auto 1.2rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
