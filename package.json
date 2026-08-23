@@ -1,0 +1,50 @@
+{
+  "name": "frontend-empresarial-seguro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bóveda — proyecto de referencia del curso SOFT-750 (Cenfotec / BCR)",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:p1": "vitest run tests/unit/practica-1",
+    "test:p2": "vitest run tests/unit/practica-1 tests/unit/practica-2",
+    "test:p3": "vitest run tests/unit/practica-1 tests/unit/practica-2 tests/unit/practica-3",
+    "test:ejemplos": "vitest run ejemplos",
+    "test:authz": "vitest run tests/unit/practica-2/base/authz.test.ts tests/unit/practica-2/extra/authz-efecto.test.ts",
+    "e2e": "playwright test",
+    "db:seed": "tsx db/seed.ts",
+    "grade:http": "node grading/http-smoke.mjs",
+    "grade:e2e": "playwright test --config grading/playwright.grading.config.ts",
+    "grade": "node grading/grade.mjs"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "5.7.1",
+    "@types/better-sqlite3": "9.6.0",
+    "better-sqlite3": "13.0.3",
+    "isomorphic-dompurify": "3.22.0",
+    "jose": "6.2.8",
+    "next": "16.3.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-hook-form": "7.85.0",
+    "server-only": "0.0.1",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.2",
+    "@types/node": "26.2.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "jsdom": "30.0.1",
+    "tsx": "4.23.11",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10"
+  }
+}
