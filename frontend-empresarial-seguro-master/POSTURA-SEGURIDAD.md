@@ -9,17 +9,6 @@ Regla para llenarlo: cada fila necesita una **prueba** que la respalde. Si no
 podés nombrar el comando que la verifica, ese control no está cubierto — y eso
 va en la sección de riesgos aceptados, no escondido.
 
-# Postura de seguridad — Bóveda
-
-Documento entregable de la Práctica 3, y el mismo que pide el Proyecto Final.
-No es un resumen de lo que hiciste: es la declaración de que controlás cada
-riesgo, o de que lo aceptaste a sabiendas. Un riesgo aceptado y escrito es
-ingeniería; un riesgo no visto es otra cosa. La diferencia es este documento.
-
-Regla para llenarlo: cada fila necesita una **prueba** que la respalde. Si no
-podés nombrar el comando que la verifica, ese control no está cubierto — y eso
-va en la sección de riesgos aceptados, no escondido.
-
 ## 1. Cobertura de controles
 
 Una fila por control. En "Cómo se verifica" va el comando exacto, no una idea.
