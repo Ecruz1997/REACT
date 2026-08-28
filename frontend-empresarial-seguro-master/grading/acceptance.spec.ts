@@ -2,7 +2,7 @@
 // así funciona contra cualquier entrega que respete el contrato (grading/contract.md).
 // Cada test lleva su criterio oficial en el título: [c1]..[c5].
 import { test, expect, type Page } from '@playwright/test';
-import { USUARIOS, SOLICITUD_A, SOLICITUD_B } from './config.mjs';
+import { USUARIOS, SOLICITUD_A, SOLICITUD_B, SOLICITUD_PROPIA_APROBADOR } from './config.mjs';
 
 async function login(page: Page, u: { usuario: string; contrasena: string }) {
   await page.goto('/login');
@@ -78,21 +78,30 @@ test.describe('Criterio 4 — buenas prácticas de seguridad', () => {
   });
 
   test('[c4] doble control: el aprobador no aprueba su propia solicitud', async ({ page }) => {
-    // beto crea una solicitud (si el formulario está disponible para su rol se omite);
-    // aquí verificamos vía UI que la acción de aprobar sobre una propia no cambia el estado.
-    // Requiere una solicitud creada por beto; si no existe en el seed, este test se marca skip.
-    test.skip(true, 'Requiere solicitud creada por el propio aprobador en el seed extendido.');
+    // El seed siembra una solicitud PENDIENTE creada por beto.aprobador (por la app no se
+    // puede crear: crear exige ANALISTA). Beto la abre: si la UI le ofrece el botón, el
+    // servidor debe rechazar; en cualquier caso el estado NO cambia — esa es la evidencia.
+    await login(page, USUARIOS.aprobadorA);
+    await page.goto(`/solicitudes/${SOLICITUD_PROPIA_APROBADOR}`);
+    await expect(page.getByText('PENDIENTE')).toBeVisible();
+
+    const aprobar = page.getByRole('button', { name: /^aprobar$/i });
+    if (await aprobar.count()) {
+      await aprobar.click();
+      await expect(page.getByRole('alert')).toBeVisible(); // denegación comunicada
+    }
+
+    await page.reload();
+    await expect(page.getByText('PENDIENTE')).toBeVisible(); // el estado en base no cambió
   });
 });
 
 test.describe('Criterio 3 — estados y retroalimentación', () => {
   test('[c3] la página de no autorizado comunica el estado', async ({ page }) => {
     await login(page, USUARIOS.analistaA);
-    await page.goto('/auditoria'); // debería mandar a no-autorizado
-    const enNoAutorizado = /\/no-autorizado/.test(page.url());
-    if (enNoAutorizado) {
-      await expect(page.getByRole('alert')).toBeVisible();
-    }
+    await page.goto('/auditoria'); // rol sin permiso: debe terminar en no-autorizado
+    await expect(page).toHaveURL(/\/no-autorizado/);
+    await expect(page.getByRole('alert')).toBeVisible();
   });
 
   test('[c3] recorrido con teclado: el formulario de login es navegable', async ({ page }) => {

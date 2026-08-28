@@ -1,0 +1,16 @@
+/* Sesión 6 · Tema 11 — Mobile-first: el snippet de la clase (idéntico a src/app/globals.css).
+   El default es UNA columna (móvil); las media queries AGREGAN columnas al crecer
+   la pantalla — nunca al revés. Probar con DevTools en 360px, 640px y 900px. */
+.grilla { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 640px) { .grilla { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .grilla { grid-template-columns: repeat(3, 1fr); } }
+
+/* Los dos requisitos de accesibilidad que acompañan a la grilla (WCAG 2.2 AA / Ley 7600): */
+
+/* Foco visible SIEMPRE: nunca outline:none sin reemplazo. */
+:focus-visible { outline: 3px solid #3d8bff; outline-offset: 2px; border-radius: 4px; }
+
+/* Movimiento reducido: la preferencia del sistema se respeta. */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

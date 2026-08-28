@@ -10,6 +10,9 @@ export const USUARIOS = {
 
 export const SOLICITUD_A = 'aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
 export const SOLICITUD_B = 'bbbbbbbb-bbbb-4bbb-bbbb-bbbbbbbbbbbb';
+// Sembrada por el seed directo en la base (por la app no se puede: crear exige ANALISTA).
+// Es la que permite probar el doble control: su creador es beto.aprobador.
+export const SOLICITUD_PROPIA_APROBADOR = 'dddddddd-dddd-4ddd-dddd-dddddddddddd';
 
 // Criterios oficiales de la rúbrica de PRÁCTICAS (5). Cada test se etiqueta con uno.
 export const CRITERIOS = {

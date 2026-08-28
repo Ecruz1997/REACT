@@ -20,6 +20,12 @@ base con este seed fijo (es el mismo que trae `boveda-base` / la implementación
 |---|---|---|---|
 | `aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa` | A | ana.analista | PENDIENTE |
 | `bbbbbbbb-bbbb-4bbb-bbbb-bbbbbbbbbbbb` | B | edu.heredia | PENDIENTE |
+| `cccccccc-cccc-4ccc-cccc-cccccccccccc` | A | ana.analista | APROBADA (por beto.aprobador) |
+| `dddddddd-dddd-4ddd-dddd-dddddddddddd` | A | **beto.aprobador** | PENDIENTE |
+
+La última fila no se puede crear por la app (crear exige ANALISTA): el seed la inserta
+directo en la base. Existe para que el doble control sea comprobable de punta a punta —
+beto abre su propia solicitud y el harness verifica que no puede aprobarla.
 
 ## Rutas que el harness asume (contrato de URLs)
 

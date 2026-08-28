@@ -72,14 +72,22 @@ Usuarios de demo (contraseña de todos: `Demo1234`):
 
 ```bash
 npm run typecheck     # tsc --noEmit
-npm test              # 35 tests unitarios (Vitest)
+npm test              # tests unitarios (Vitest): prácticas + proyecto + ejemplos de sesión
+npm run test:p1       # solo Práctica 1 (base + extra)
+npm run test:p2       # Prácticas 1–2 (acumulativo: incluye p1 como regresión)
+npm run test:p3       # Prácticas 1–3 (acumulativo)
+npm run test:ejemplos # solo los ejemplos ejecutables de las sesiones (ejemplos/)
 npm run test:authz    # solo la matriz de autorización
 npm run build         # build de producción
 npm run e2e           # Playwright (requiere: npx playwright install chromium)
 ```
 
+Los tests de práctica viven en `tests/unit/practica-{1,2,3}/{base,extra}/`: **base** cubre
+lo ofertado en el programa oficial (obligatorio); **extra** es la profundidad senior que
+sube nota. `tests/unit/proyecto/` cubre los temas evaluados solo en el proyecto (Tema 9).
+
 Estado verificado en este repo: **typecheck limpio**, **build de producción correcto**,
-**35/35 tests unitarios en verde**, y smoke test de runtime confirmando redirecciones y
+**suite unitaria completa en verde**, y smoke test de runtime confirmando redirecciones y
 cabeceras de seguridad. Los E2E están escritos; ejecútelos tras instalar el navegador de
 Playwright en su máquina.
 

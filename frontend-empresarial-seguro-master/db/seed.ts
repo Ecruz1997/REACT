@@ -29,6 +29,24 @@ const insSol = db.prepare(`INSERT INTO solicitudes
   VALUES (@id,@sucursalId,@creadaPor,@cuentaDestino,@monto,@moneda,@justificacion,@estado,@creadaEn,@resueltaPor,@resueltaEn)`);
 for (const s of solicitudesDemo()) insSol.run(s);
 
+// Fila extra SOLO del seed de runtime (no de los fixtures de unit): una solicitud
+// creada por el propio aprobador. Por la app no se puede crear (crear exige ANALISTA),
+// por eso se siembra directo — es la que permite ejercer el doble control (ataque 8)
+// desde el navegador y desde el harness de calificación.
+insSol.run({
+  id: 'dddddddd-dddd-4ddd-dddd-dddddddddddd',
+  sucursalId: 'suc-central',
+  creadaPor: '22222222-2222-2222-2222-222222222222', // beto.aprobador
+  cuentaDestino: 'CR55556666777788889999',
+  monto: 2_000_000,
+  moneda: 'CRC',
+  justificacion: 'Anticipo a contratista de remodelación de agencia',
+  estado: 'PENDIENTE',
+  creadaEn: '2026-08-03T09:30:00.000Z',
+  resueltaPor: null,
+  resueltaEn: null,
+});
+
 console.log(`Seed completo en ${ruta}`);
 console.log('Usuarios: ana.analista, beto.aprobador, carla.aprobadora, dina.auditora, edu.heredia');
 console.log('Contraseña de todos: Demo1234');

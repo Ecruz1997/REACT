@@ -7,7 +7,7 @@ nunca reemplazando un tema.
 
 | # | Tema oficial | Dónde vive en el repo | Profundidad añadida |
 |---|--------------|------------------------|---------------------|
-| 1 | Fundamentos de autenticación moderna (JWT, **access vs refresh**, roles/claims) | `src/lib/tokens.ts`, `tests/unit/tokens.test.ts` | Sesión revocable respaldada en base; algoritmo fijado explícitamente |
+| 1 | Fundamentos de autenticación moderna (JWT, **access vs refresh**, roles/claims) | `src/lib/tokens.ts`, `tests/unit/practica-1/base/tokens.test.ts` | Sesión revocable respaldada en base; algoritmo fijado explícitamente |
 | 2 | Almacenamiento seguro (cookies httpOnly, riesgos de localStorage) | `src/lib/session.ts` (cookies httpOnly, SameSite) | Prefijo `__Host-` para producción; refresh en cookie aparte |
 | 3 | Vulnerabilidades comunes (XSS, CSRF, OWASP frontend) | `src/lib/sanitize.ts`, `middleware.ts` (CSP) | CSP con nonce + `strict-dynamic`; escapado de salida vs sanitización al escribir |
 | 4 | Implementación práctica (login, sesión, logout) | `src/app/login/`, `src/app/logout/` | Mensaje de error uniforme; rotación de sesión anti-fijación |
@@ -27,7 +27,8 @@ real del entregable (que el PoC apruebe la revisión de ciberseguridad del BCR).
 en la Sesión de cierre o como asignaciones:
 
 - **Cadena de suministro / pipeline**: `npm ci --ignore-scripts`, escaneo de secretos,
-  SAST (Semgrep), verificación en CI. (Material de defensa, no de currículo.)
+  SAST (Semgrep), verificación en CI. Se ve como **anexo de la Sesión 5**; el resto de
+  este material queda para la Sesión de cierre. (Material de defensa, no de currículo.)
 - **BFF (Backend for Frontend)**: si el BCR expone un backend existente, el patrón correcto
   para no filtrar tokens al navegador. Diagrama + discusión, no implementación frontend.
 - **Endurecimiento de despliegue**: rate limiting, WAF, y el mapeo a normativa
