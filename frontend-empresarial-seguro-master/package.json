@@ -10,6 +10,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:p1": "vitest run tests/unit/refresh.test.ts tests/unit/tokens.test.ts",
     "test:watch": "vitest",
     "test:authz": "vitest run tests/unit/authz.test.ts",
     "e2e": "playwright test",
